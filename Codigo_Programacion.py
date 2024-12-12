@@ -13,7 +13,7 @@ class Producto:
         for producto in self.inventario:
             if producto.nombre == nombre:
                 nuevo_precio = float(input("Ingrese el nuevo precio del producto: "))
-                nuevo_cantidad =int(input("Indique la nueva cantidad que haya del producto:"))
+                nuevo_cantidad =int(input("Indique la nueva cantidad que haya del producto: "))
                 producto.precio = nuevo_precio
                 producto.cantidad = nuevo_cantidad
                 print("Producto modificado exitosamente.")
@@ -31,17 +31,25 @@ class Producto:
     def añadir_producto(self):
         nombre = input("Ingrese el nombre del producto: ")
         precio = float(input("Ingrese el precio del producto: "))
-        cantidad = int(input("Ingrese cuanta cantidad del producto se dispone:"))
+        cantidad = int(input("Ingrese cuanta cantidad del producto se dispone: "))
         for producto in self.inventario:
             if producto.nombre == nombre:
                 print("El producto ya existe en el inventario.")
                 return
-        nuevo_producto = Producto(nombre, precio)
+        nuevo_producto = Producto(nombre, precio, cantidad)
         self.inventario.append(nuevo_producto)
         print("Producto agregado exitosamente.") #donde pongamos Producto.nombre es para que nos coja la caracteristica nombre de la clase objeto, en vez de que nos devuelva un caracter raro.
-    
+    def eliminar_producto(self):
+        nombre = input("¿Que producto desea eliminar? ")
+        for producto in self.inventario:
+            if producto.nombre == nombre:
+                self.inventario.remove(producto)
+                print ("Producto eliminado de manera exitosa")
+            else:
+                print("El producto que trata de eliminar no se encuentra en el inventario")
+
 def main():
-    gestion_inventario = Producto("Inventario", 0)
+    gestion_inventario = Producto("Inventario", 0, 0)
     while True:
         print("Menú:")
         print("1. Agregar producto al inventario.")
